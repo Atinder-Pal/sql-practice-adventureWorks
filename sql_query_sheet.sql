@@ -3,14 +3,23 @@ SELECT CONCAT(contact.FirstName,' ', contact.LastName)AS EmployeeName
 FROM `contact` 
 WHERE contact.ContactID IN(SELECT employee.ContactID FROM `employee` WHERE VacationHours = (SELECT MAX(VacationHours) FROM employee));
 --Query1 Alternative --------------------------------
-SELECT CONCAT(contact.FirstName,' ', contact.LastName)AS EmployeeName
+-- Thanks to Amr Fouad for suggesting to use COALESCE(columnName,'') on Slack to display values where Title IS NULL
+SELECT CONCAT(COALESCE(contact.Title,''),contact.FirstName,' ', contact.LastName)AS EmployeeName
 FROM employee
 INNER JOIN contact USING (ContactID)
 WHERE contact.ContactID IN(SELECT employee.ContactID FROM `employee` WHERE VacationHours = (SELECT MAX(VacationHours) FROM employee));
 -- ----------------------------------------------------
 --Query1 Alternative --------------------------------
-SELECT CONCAT(contact.FirstName,' ', contact.LastName)AS EmployeeName
+-- Thanks to Zhen Li for suggesting to use IFNULL(columnName,'') on Slack to display values where Title IS NULL
+SELECT CONCAT(IFNULL(contact.Title,''),contact.FirstName,' ', contact.LastName)AS EmployeeName
 FROM contact
 INNER JOIN employee USING (ContactID)
 WHERE contact.ContactID IN(SELECT employee.ContactID FROM `employee` WHERE VacationHours = (SELECT MAX(VacationHours) FROM employee));
 -- ----------------------------------------------------
+
+-- Query2----------------------------------------------
+SELECT COUNT(*)
+FROM contact 
+INNER JOIN employee USING (ContactID)
+WHERE FirstName LIKE 's%';
+-- -----------------------------------------------------
