@@ -37,3 +37,18 @@ RIGHT JOIN department USING (DepartmentID)
 GROUP BY DepartmentID
 ORDER BY department.Name;
 -- ------------------------------------------------------
+
+-- Challenge1--------------------------------------------
+-- Citation
+-- https://www.w3schools.com/sql/func_sqlserver_right.asp
+-- Above surce mentions how to extract last character from a string(starting from right)
+-- ------------------------------------------------------
+-- Citation
+-- https://stackoverflow.com/questions/28749911/query-select-group-by-last-character-in-field
+-- Above source shows how to group rows based on last char of a columnValue
+-- End Citation
+SELECT RIGHT(LoginID,1) as LoginIDEndDigit, Count(*) as Count
+FROM employee
+Group by RIGHT(LoginID,1)
+Order by RIGHT(LoginID,1);
+-- ------------------------------------------------------
