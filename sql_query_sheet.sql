@@ -52,3 +52,9 @@ FROM employee
 Group by RIGHT(LoginID,1)
 Order by RIGHT(LoginID,1);
 -- ------------------------------------------------------
+
+-- Challenge2--------------------------------------------
+SELECT MAX(HireDate), EmployeeID 
+FROM employee 
+WHERE HireDate= (SELECT MAX(HireDate) FROM employee);
+-- ------------------------------------------------------
