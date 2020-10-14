@@ -30,3 +30,10 @@ FROM `employeepayhistory`
 INNER JOIN employee USING (EmployeeID)
 WHERE Title = 'Chief Executive Officer';
 -- -----------------------------------------------------
+-- Query4-----------------------------------------------
+SELECT Count(EmployeeID), department.Name
+FROM `employeedepartmenthistory` 
+RIGHT JOIN department USING (DepartmentID)
+GROUP BY DepartmentID
+ORDER BY department.Name;
+-- ------------------------------------------------------
