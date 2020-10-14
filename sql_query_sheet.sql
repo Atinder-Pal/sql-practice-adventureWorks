@@ -23,3 +23,10 @@ FROM contact
 INNER JOIN employee USING (ContactID)
 WHERE FirstName LIKE 's%';
 -- -----------------------------------------------------
+
+-- Query3-----------------------------------------------
+SELECT Rate 
+FROM `employeepayhistory`
+INNER JOIN employee USING (EmployeeID)
+WHERE Title = 'Chief Executive Officer';
+-- -----------------------------------------------------
